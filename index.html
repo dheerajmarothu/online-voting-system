@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureVote - Modern Voting System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <header class="main-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 12 2 2 4-4" />
+                        <path d="M5 7c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v12H5V7Z" />
+                        <path d="M22 19H2" />
+                    </svg>
+                    <span>SecureVote</span>
+                </div>
+                <nav>
+                    <button id="nav-home" class="nav-link active">Home</button>
+                    <button id="nav-results" class="nav-link">Live Results</button>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main-content" class="container">
+            <!-- Content injected by app.js -->
+        </main>
+
+        <footer class="main-footer">
+            <div class="container">
+                <p>&copy; <span id="year"></span> SecureVote System. Secure. Transparent. Reliable.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Templates for Views -->
+    <template id="landing-template">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Secure Digital Voting</h1>
+                <p>Enter our secure portal to cast your vote. You will need your 11-digit identification number.</p>
+                <button id="start-login-btn" class="btn btn-primary btn-lg">
+                    Proceed to Vote
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+            <div class="hero-image">
+                <div class="voting-illustration">
+                    <div class="ballot-box"></div>
+                    <div class="vote-paper"></div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="login-template">
+        <section class="auth-section">
+            <div class="auth-card">
+                <h2>Voter Identification</h2>
+                <p>Please enter your 11-digit Aadhar Number to verify your eligibility.</p>
+                <div class="form-group">
+                    <label for="aadhar-input">Aadhar Number</label>
+                    <input type="number" id="aadhar-input" placeholder="Enter 11-digit number" maxlength="11"
+                        oninput="if(this.value.length > 11) this.value = this.value.slice(0, 11);">
+                </div>
+                <button id="get-otp-btn" class="btn btn-primary full-width">
+                    Get Verification Code
+                </button>
+                <button id="back-landing-btn" class="btn btn-text">Cancel</button>
+            </div>
+        </section>
+    </template>
+
+    <template id="verify-template">
+        <section class="auth-section">
+            <div class="auth-card">
+                <h2>Security Verification</h2>
+                <p>Enter the 4-digit code sent to your registered device.</p>
+                <div class="otp-display-mock">
+                    <span>Your Generator Code:</span>
+                    <strong id="mock-otp-display" class="highlight-code">----</strong>
+                </div>
+                <div class="form-group">
+                    <label for="otp-input">Verification Code</label>
+                    <input type="text" id="otp-input" placeholder="Enter 4-digit code" maxlength="4"
+                        style="text-align: center; letter-spacing: 0.5rem; font-size: 1.5rem;">
+                </div>
+                <button id="verify-otp-btn" class="btn btn-primary full-width">
+                    Verify & Proceed
+                </button>
+                <button id="resend-otp-btn" class="btn btn-text">Resend Code</button>
+            </div>
+        </section>
+    </template>
+
+    <template id="voting-template">
+        <section class="voting-section">
+            <header class="section-header">
+                <h2>Select Your Candidate</h2>
+                <p>Please choose one candidate from the list below. Your vote is final.</p>
+            </header>
+            <div id="candidates-grid" class="candidates-grid">
+                <!-- Candidates injected here -->
+            </div>
+        </section>
+    </template>
+
+    <template id="results-template">
+        <section class="results-section">
+            <header class="section-header">
+                <h2>Live Results</h2>
+                <p>Real-time vote counting updates.</p>
+            </header>
+            <div id="results-chart" class="results-chart">
+                <!-- Bars injected here -->
+            </div>
+            <div class="total-votes">
+                <span>Total Votes Cast:</span>
+                <strong id="total-count">0</strong>
+            </div>
+            <button id="back-home-btn" class="btn btn-secondary">Back to Home</button>
+        </section>
+    </template>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
